@@ -1,32 +1,24 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
 }
-
 include "Db_Config.php";
-
 if (isset($_GET['id'])) {
     $medication_id = $_GET['id'];
-
-    // Fetch the medication details from the database
     $sql = "SELECT * FROM medications WHERE medication_id = '$medication_id' ";
     $result = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $medication = mysqli_fetch_assoc($result);
     } else {
-        // Handle the case where the medication ID is not found
         header("Location: manage_medications.php");
         exit();
     }
 } else {
-    // Handle the case where the medication ID is not provided
     header("Location: manage_medications.php");
     exit();
 }
-
 if (isset($_POST['update'])) {
     $medication_name = $_POST['medication_name'];
     $generic_name = $_POST['generic_name'];
@@ -36,8 +28,6 @@ if (isset($_POST['update'])) {
     $expiry_date = $_POST['expiry_date'];
     $stock_quantity = $_POST['stock_quantity'];
     $unit_price = $_POST['unit_price'];
-
-    // Update the medication data in the database
     $sql = "UPDATE medications SET 
                 name = '$medication_name', 
                 generic_name = '$generic_name', 

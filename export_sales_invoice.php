@@ -7,17 +7,13 @@ if (!isset($_GET['generate_invoice']) || empty($_GET['generate_invoice'])) {
     die("Error: Sale ID is missing!");
 }
 
-$id = (int) $_GET['generate_invoice']; // Ensure ID is an integer
-
-// Fetch sale details
+$id = (int) $_GET['generate_invoice']; 
 $result = $con->query("SELECT s.id, m.name, s.quantity_sold, s.total_price, s.customer_name, s.date_sold, s.payment_method 
                       FROM sales_records s 
                       JOIN medications m ON s.medication_id = m.medication_id 
                       WHERE s.id = $id");
 
 $sale = $result->fetch_assoc();
-
-// Check if sale exists
 if (!$sale) {
     header("Location: invoice.php");
     die("Error: Sale not found!");

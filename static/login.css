@@ -48,7 +48,6 @@ body {
 .input_box input {
     width: 95%;
     height: 100%;
-    /* background: transparent; */
     border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 2);
