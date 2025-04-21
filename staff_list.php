@@ -53,7 +53,7 @@ $staff = $con->query("SELECT * FROM staff ORDER BY date_joined DESC");
             cursor: pointer;
             border-radius: 5px;
         }
-
+-
         .delete-btn:hover {
             background-color: darkred;
         }
